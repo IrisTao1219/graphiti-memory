@@ -1,0 +1,344 @@
+# Contributing to Graphiti
+
+Welcome, and thank you for your interest in Graphiti! Whether you have found a bug, have an idea
+you would like to see built, spotted a confusing doc, or simply have a question, we are glad you
+are here. This guide will help you find the right starting point so we can respond quickly and
+put your contribution to good use.
+
+**Please start with a GitHub issue, not a pull request.** Every pull request must link an existing
+issue with `Fixes #<number>`. Open the issue first, talk through the work there, then open the PR
+and point it at that issue.
+
+**Feature work needs a discussion with the Graphiti team before you implement it.** File a Feature
+issue, wait for the team to talk it through with you, and wait for explicit approval (`rfc-approved`
+on that issue) before you open a feature pull request. Prototypes are welcome as a way to explore
+an idea — keep them in draft, or share what you learned on the issue, until the design is approved.
+
+**The 14-day auto-close applies only when something is still missing.** If the issue or pull
+request follows this guide — linked issue, feature approval when it is a feature, enough detail
+to review — it stays open until a maintainer handles it. There is no inactivity clock on a
+correct submission. If intake flags a gap (`needs-issue`, `needs-rfc`, `needs-info`, and similar),
+you get an automated comment and **14 days to fix it**. Fix the gap and the close clock stops.
+Leave it unresolved and the item is closed.
+
+## Where to start
+
+The [issue chooser](https://github.com/getzep/graphiti/issues/new/choose) will point you to the
+right form:
+
+- **Bug:** Something behaves differently than the docs or your reasonable expectations suggest.
+- **Feature:** You would like new functionality, or an improvement to how something works today.
+- **Documentation:** Something is incorrect, unclear, or missing from our docs or examples.
+- **Question:** You would like help understanding or using Graphiti. Share the versions you are
+  on and what you have already tried, and we can get to a useful answer sooner.
+- **Security vulnerability:** Please do **not** open a public issue. Report it privately using
+  the steps in [SECURITY.md](SECURITY.md) so we can fix it before it is widely known.
+
+Not sure which one fits? Pick your best guess and file it — a maintainer will happily re-route it.
+We would much rather hear from you than have you wonder whether it was worth reporting.
+
+Looking for other ways to help? All of these are genuinely valuable:
+
+- Pick up an issue tagged [`help wanted`](https://github.com/getzep/graphiti/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22help%20wanted%22)
+  or [`good first issue`](https://github.com/getzep/graphiti/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22).
+  These are pre-vetted and scoped, and someone is around to help if you get stuck.
+- Share how you use Graphiti by adding to [`examples/`](https://github.com/getzep/graphiti/tree/main/examples).
+  Good examples help more people than you might expect.
+- Answer questions and help troubleshoot in GitHub Issues. The knowledge you share today saves
+  someone hours tomorrow.
+
+### Reporting a bug
+
+The fastest fixes start with a report someone else can reproduce. The more of the following you
+can share, the sooner we can help:
+
+- A minimal, self-contained code sample or test case
+- What you expected to happen, and what actually happened
+- The complete error or traceback, if there was one
+- Your Graphiti and Python versions, operating system, and how you installed
+- Which part is affected: core library, MCP server, REST server, or documentation
+- Your database backend and version
+- Your LLM, embedding, or reranking provider and model, when they are involved
+
+If you cannot fill in everything, file what you have — we will ask about anything else we need.
+
+One request: please scrub API keys, credentials, and private data before posting. Once it is in a
+public issue, it is public.
+
+### Proposing a feature
+
+Tell us the story of what you are trying to accomplish: what are you building, what is getting in
+your way, and what would make your life easier? Starting with the problem rather than a specific
+implementation gives us room to find the best solution together.
+
+**Do not open a feature pull request until the Graphiti team has discussed the issue and approved
+the design.** The Feature issue is that discussion — there is no separate RFC to file. Fill in the
+proposal, alternatives, and impact sections. A maintainer adds `rfc-approved` when the team has
+explicitly approved the approach. Until then the issue may carry `needs-rfc`, which means the
+conversation is still open.
+
+A feature pull request that lands without that discussion and `rfc-approved` label is not ready
+for review. It is flagged, you have 14 days to get approval or close it yourself, and it is closed
+if it is still missing that approval. A correctly approved, linked feature PR is not auto-closed.
+
+We treat a feature as needing extra design detail when it involves any of:
+
+- A new database driver
+- A new LLM, embedding, or reranking provider
+- A new API endpoint or public capability
+- A major architectural or data-model change
+- A change likely to exceed 500 lines
+
+### What we prioritize
+
+Bug fixes to existing functionality get the most attention and the fastest review. For new
+functionality, the Feature issue comes first: discuss it with the team, wait for `rfc-approved`,
+then open the pull request. That keeps two people from building the same thing and helps the work
+fit Graphiti's architecture from the start.
+
+## Labels and who does what
+
+Our labels are meant to make the state of your issue obvious at a glance:
+
+| Axis | Labels | What it tells you |
+| --- | --- | --- |
+| Type | `bug`, `feature`, `question`, `documentation` | What kind of issue this is |
+| Scope | `scope:core`, `scope:mcp`, `scope:service`, `scope:docs`, `scope:ci` | Which package is affected (`graphiti_core`, MCP, REST server, docs, or CI/release) |
+| Not ready | `needs-info`, `needs-issue`, `needs-rfc`, `needs-tests`, `needs-rework` | What still has to happen before review |
+
+A process label is never a judgment about you or your work — it is a note about the next step. If a
+label appears and you are not sure what it is asking for, just say so on the issue and we will
+explain. Maintainers add `rfc-approved` on a feature issue when the design is settled.
+
+You may still see `enhancement` and `slop-detected` on older items. We now use `feature` and the
+more actionable `needs-rework` instead. To be clear: using AI assistance is fine and does not by
+itself mean a contribution needs rework.
+
+Here is who does what:
+
+| Role | What they do |
+| --- | --- |
+| You, the contributor | File an issue first, share context, wait for feature approval when needed, and link every pull request to that issue |
+| Intake automation | Sorts and routes new issues and PRs, and flags what is not ready. It never approves designs and never auto-closes a correct submission. Only items still missing a required piece after 14 days are closed |
+| Maintainers | Discuss and approve feature designs (`rfc-approved`), set priority, mark `good first issue` and `help wanted`, review code, and merge |
+
+## Setup
+
+1. Fork the repository on GitHub.
+2. Clone your fork locally:
+   ```
+   git clone https://github.com/getzep/graphiti
+   cd graphiti
+   ```
+3. Set up your development environment:
+
+   - Ensure you have Python 3.10+ installed.
+   - Install uv: https://docs.astral.sh/uv/getting-started/installation/
+   - Install project dependencies:
+     ```
+     make install
+     ```
+   - To run integration tests, set the appropriate environment variables
+
+     ```
+     export TEST_OPENAI_API_KEY=...
+     export TEST_OPENAI_MODEL=...
+     export TEST_ANTHROPIC_API_KEY=...
+
+     # For Neo4j
+     export TEST_URI=neo4j://...
+     export TEST_USER=...
+     export TEST_PASSWORD=...
+     ```
+
+## Making Changes
+
+1. Create a new branch for your changes:
+   ```
+   git checkout -b your-branch-name
+   ```
+2. Make your changes in the codebase.
+3. Write or update tests as necessary.
+4. Run the tests to ensure they pass:
+   ```
+   make test
+   ```
+5. Format your code:
+   ```
+   make format
+   ```
+6. Run linting checks:
+   ```
+   make lint
+   ```
+
+## Submitting Changes
+
+Before you push a pull request, confirm there is already an open GitHub issue for the work, and
+that a feature issue has `rfc-approved` if you are adding new functionality.
+
+1. Commit your changes:
+   ```
+   git commit -m "Your detailed commit message"
+   ```
+2. Push to your fork:
+   ```
+   git push origin your-branch-name
+   ```
+3. Open a pull request against https://github.com/getzep/graphiti and link the issue with
+   `Fixes #<issue-number>`.
+
+## Pull Request Guidelines
+
+- **Every pull request must link an existing issue** with `Fixes #<issue-number>`. That includes
+  bug fixes, features, documentation, and maintenance. Open the issue first if one does not exist.
+- **Feature pull requests require a prior discussion with the Graphiti team and explicit approval**
+  (`rfc-approved` on the linked Feature issue) before you open the PR.
+- **Only non-compliant items are auto-closed.** If the PR is correctly linked (and, for features,
+  approved), it stays open for maintainer review with no 14-day clock. If intake flags a gap
+  (`needs-issue`, `needs-rfc`, `needs-info`, `needs-tests`, `needs-rework`), you get an automated
+  comment and **14 days** to resolve those flags. Once they are cleared, the close clock stops.
+  If they are still there after 14 days, the pull request is closed.
+- Give it a clear title, and explain both the problem and your solution.
+- Add or update tests for behavior changes. If tests do not make sense here, just tell us why.
+- Run `make check`, and mention anything you were not able to run — that is useful to know, not
+  something to hide.
+- Update the docs when behavior or public interfaces change.
+- Keep credentials, API keys, and customer data out of commits.
+- Sign the Contributor License Agreement when the bot prompts you.
+
+## AI review and agents
+
+Graphiti uses GitHub Copilot code review. Copilot does not review a pull request
+automatically. The review criteria are in `.github/copilot-instructions.md`.
+
+- **How a review starts.** A Zep maintainer opens the pull request, and under
+  **Reviewers** in the right sidebar clicks **Request** next to **Copilot**.
+  Copilot then reviews the current head. To review a later push, the maintainer
+  clicks the re-request icon next to Copilot.
+- **Who can start it.** GitHub only lets a person with the Triage role or
+  higher on `getzep/graphiti` request a reviewer. External contributors have
+  Read access, so they cannot request a Copilot review. If you want one on your
+  pull request, ask a maintainer in a comment.
+- **What does not start it.** An `@copilot` mention in a comment does not start
+  a review. It addresses the Copilot coding agent, which changes code, so do
+  not use it to ask for a review.
+- A Copilot review is a comment, not an approval. A maintainer approval is the
+  merge gate.
+- If an AI agent wrote the change, say which agent in the pull request
+  description. AI assistance is fine and is not by itself a reason for
+  `needs-rework`.
+
+## Code Style and Quality
+
+We use several tools to maintain code quality:
+
+- Ruff for linting and formatting
+- Pyright for static type checking
+- Pytest for testing
+
+Before submitting a pull request, please run:
+
+```
+make check
+```
+
+This command will format your code, run linting checks, and execute tests.
+
+## Third-Party Integrations
+
+When contributing integrations for third-party services (LLM providers, embedding services, databases, etc.), please follow these patterns:
+
+### Optional Dependencies
+
+All third-party integrations must be optional dependencies to keep the core library lightweight. Follow this pattern:
+
+1. **Add to `pyproject.toml`**: Define your dependency as an optional extra AND include it in the dev extra:
+   ```toml
+   [project.optional-dependencies]
+   your-service = ["your-package>=1.0.0"]
+   dev = [
+       # ... existing dev dependencies
+       "your-package>=1.0.0",  # Include all optional extras here
+       # ... other dependencies
+   ]
+   ```
+
+   Exception: do not add a package that installs PyTorch (for example
+   `sentence-transformers`) to the dev extra. CI installs the dev extra in the
+   unit-test and type-check jobs, and PyTorch with its CUDA wheels is
+   approximately 2.8 GB. Make the tests of such an integration skip when the
+   package is not installed (`pytest.importorskip`).
+
+2. **Use TYPE_CHECKING pattern**: In your integration module, import dependencies conditionally:
+   ```python
+   from typing import TYPE_CHECKING
+   
+   if TYPE_CHECKING:
+       import your_package
+       from your_package import SomeType
+   else:
+       try:
+           import your_package
+           from your_package import SomeType
+       except ImportError:
+           raise ImportError(
+               'your-package is required for YourServiceClient. '
+               'Install it with: pip install graphiti-core[your-service]'
+           ) from None
+   ```
+
+3. **Benefits of this pattern**:
+   - Fast startup times (no import overhead during type checking)
+   - Clear error messages with installation instructions
+   - Proper type hints for development
+   - Consistent user experience
+
+4. **Do NOT**:
+   - Add optional imports to `__init__.py` files
+   - Use direct imports without error handling
+   - Include optional dependencies in the main `dependencies` list
+
+### Integration Structure
+
+- Place LLM clients in `graphiti_core/llm_client/`
+- Place embedding clients in `graphiti_core/embedder/`
+- Place database drivers in `graphiti_core/driver/`
+- Follow existing naming conventions (e.g., `your_service_client.py`)
+
+### Adding a Graph Driver
+
+Graphiti's driver layer is backend-agnostic. To add support for a new graph database, mirror the existing drivers in
+`graphiti_core/driver/` and keep the implementation split between the top-level driver and provider-specific
+operations.
+
+1. Add the new provider to `graphiti_core/driver/driver.py` in `GraphProvider`.
+2. Create `graphiti_core/driver/<backend>_driver.py` implementing the `GraphDriver` interface:
+   `execute_query()`, `session()`, `close()`, `build_indices_and_constraints()`, and `delete_all_indexes()`.
+3. Add `graphiti_core/driver/<backend>/operations/` and implement the operations interfaces from
+   `graphiti_core/driver/operations/`:
+   `EntityNodeOperations`, `EpisodeNodeOperations`, `CommunityNodeOperations`, `SagaNodeOperations`,
+   `EntityEdgeOperations`, `EpisodicEdgeOperations`, `CommunityEdgeOperations`, `HasEpisodeEdgeOperations`,
+   `NextEpisodeEdgeOperations`, `SearchOperations`, and `GraphMaintenanceOperations`.
+4. Expose those concrete operations from the driver via the corresponding `@property` accessors on `GraphDriver`.
+5. Add provider-specific query variants to `graphiti_core/models/nodes/node_db_queries.py` and
+   `graphiti_core/models/edges/edge_db_queries.py`.
+6. If the backend needs connection or transaction management, implement a matching `GraphDriverSession`.
+7. Register the backend dependency in `pyproject.toml` under `[project.optional-dependencies]` and add tests under
+   `tests/driver/`.
+
+For reference implementations, start with `graphiti_core/driver/neo4j_driver.py`,
+`graphiti_core/driver/falkordb_driver.py`, and `graphiti_core/driver/neptune_driver.py`
+(`graphiti_core/driver/kuzu_driver.py` is deprecated — don't model new drivers on it).
+
+### Testing
+
+- Add comprehensive tests in the appropriate `tests/` subdirectory
+- Mark integration tests with `_int` suffix if they require external services
+- Include both unit tests and integration tests where applicable
+
+# Questions?
+
+Stuck on a contribution or have a half-formed idea? Open a [GitHub issue](https://github.com/getzep/graphiti/issues) and say hello. Whether you're ready to contribute or just want to learn more, we're happy to have you! You'll find both maintainers and fellow contributors ready to help.
+
+Thank you for contributing to Graphiti!
